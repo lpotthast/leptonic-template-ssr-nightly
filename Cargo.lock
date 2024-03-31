@@ -1331,6 +1331,7 @@ dependencies = [
  "strum",
  "time",
  "tracing",
+ "typed-builder",
  "uuid",
  "wasm-bindgen",
  "wasm-bindgen-futures",
