@@ -1,5 +1,5 @@
 use leptonic::components::prelude::*;
-use leptos::*;
+use leptos::prelude::*;
 use leptos_meta::{provide_meta_context, Meta, Stylesheet, Title};
 use leptos_router::*;
 

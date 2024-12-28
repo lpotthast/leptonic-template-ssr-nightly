@@ -1,9 +1,9 @@
 use leptonic::components::prelude::*;
-use leptos::*;
+use leptos::prelude::*;
 
 #[component]
 pub fn Welcome() -> impl IntoView {
-    let (count, set_count) = create_signal(0);
+    let (count, set_count) = signal(0);
 
     view! {
         <Box style="display: flex; flex-direction: column; align-items: center; padding: 1em; min-height: 100%; min-width: 100%">
