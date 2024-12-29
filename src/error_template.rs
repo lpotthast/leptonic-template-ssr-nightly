@@ -58,10 +58,10 @@ pub fn ErrorTemplate(
 
     view! {
         <Box style="display: flex; flex-direction: column; align-items:center;">
-            <H1>{match num_errors {
+            <h1>{match num_errors {
                 1 => "Error",
                 _ => "Errors",
-            }}</H1>
+            }}</h1>
 
             <For
                 each=move || { errors.clone().into_iter().enumerate() }
@@ -71,7 +71,7 @@ pub fn ErrorTemplate(
                     // let error_code= error.status_code();
                     match error {
                         AppError::NotFound => view! {
-                            <P>"404 - Not Found"</P>
+                            <p>"404 - Not Found"</p>
                         },
                     }
                 }
