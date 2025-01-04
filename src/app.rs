@@ -4,7 +4,7 @@ use leptos_meta::{provide_meta_context, Meta, Stylesheet, Title};
 use leptos_router::*;
 
 use crate::error_template::{AppError, ErrorTemplate};
-use crate::pages::welcome::Welcome;
+use crate::pages::welcome::Root;
 
 #[component]
 pub fn App() -> impl IntoView {
