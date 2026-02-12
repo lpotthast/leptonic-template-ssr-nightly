@@ -1,10 +1,34 @@
 use leptonic::components::prelude::*;
 use leptos::prelude::*;
-use leptos_meta::{provide_meta_context, Meta, Stylesheet, Title};
-use leptos_router::*;
+use leptos_meta::{provide_meta_context, Meta, MetaTags, Stylesheet, Title};
+use leptos_router::components::{Route, Router, Routes};
+use leptos_routes::routes;
 
-use crate::error_template::{AppError, ErrorTemplate};
-use crate::pages::welcome::Root;
+use crate::pages::welcome::Welcome;
+
+#[routes]
+pub mod routes {
+    #[route("/")]
+    pub mod root {}
+}
+
+pub fn shell(options: LeptosOptions) -> impl IntoView {
+    view! {
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <AutoReload options=options.clone() />
+                <HydrationScripts options/>
+                <MetaTags/>
+            </head>
+            <body>
+                <App/>
+            </body>
+        </html>
+    }
+}
 
 #[component]
 pub fn App() -> impl IntoView {
@@ -12,25 +36,19 @@ pub fn App() -> impl IntoView {
 
     view! {
         <Meta name="charset" content="UTF-8"/>
-        <Meta name="description" content="Leptonic SSR template"/>
+        <Meta name="description" content="Leptonic SSR Nightly template"/>
         <Meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <Meta name="theme-color" content="#8856e6"/>
 
         <Stylesheet id="leptos" href="/pkg/leptonic-template-ssr-nightly.css"/>
         <Stylesheet href="https://fonts.googleapis.com/css?family=Roboto&display=swap"/>
 
-        <Title text="Leptonic SSR template"/>
+        <Title text="Leptonic SSR Nightly template"/>
 
         <Root default_theme=LeptonicTheme::default()>
-            <Router fallback=|| {
-                let mut outside_errors = Errors::default();
-                outside_errors.insert_with_default_key(AppError::NotFound);
-                view! {
-                    <ErrorTemplate outside_errors/>
-                }
-            }>
-                <Routes>
-                    <Route path="" view=|| view! { <Welcome/> }/>
+            <Router>
+                <Routes fallback=|| view! { "Page not found." }>
+                    <Route path=routes::Root.path() view=Welcome/>
                 </Routes>
             </Router>
         </Root>
