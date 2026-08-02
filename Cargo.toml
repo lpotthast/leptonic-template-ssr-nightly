@@ -5,7 +5,6 @@ edition = "2024"
 
 [package.metadata.leptonic]
 style-dir = "style"
-js-dir = "public/js"
 
 [package.metadata.leptos]
 output-name = "leptonic-template-ssr-nightly"
