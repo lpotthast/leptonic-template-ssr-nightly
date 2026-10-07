@@ -1,4 +1,4 @@
-use leptonic::components::prelude::*;
+use leptonic::atoms::theme::{LeptonicTheme, ThemeProvider};
 use leptos::prelude::*;
 use leptos_meta::{provide_meta_context, Meta, MetaTags, Stylesheet, Title};
 use leptos_router::components::{Route, Router, Routes};
@@ -41,16 +41,15 @@ pub fn App() -> impl IntoView {
         <Meta name="theme-color" content="#8856e6"/>
 
         <Stylesheet id="leptos" href="/pkg/leptonic-template-ssr-nightly.css"/>
-        <Stylesheet href="https://fonts.googleapis.com/css?family=Roboto&display=swap"/>
 
         <Title text="Leptonic SSR Nightly template"/>
 
-        <Root default_theme=LeptonicTheme::default()>
+        <ThemeProvider default_theme=LeptonicTheme::default()>
             <Router>
                 <Routes fallback=|| view! { "Page not found." }>
                     <Route path=routes::Root.path() view=Welcome/>
                 </Routes>
             </Router>
-        </Root>
+        </ThemeProvider>
     }
 }
